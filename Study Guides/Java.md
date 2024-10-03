@@ -236,11 +236,24 @@ import java.util.Scanner;
 ### Method Declaration & Syntax
 A **method** is a block of reusable code with three key parts: the **method name**, which is a unique identifier, the **method parameters**, which are variables passed inside the parentheses and used within the method, and the **return type**, which is the data type returned by the method. For example, in the method 
 ```java
-int addNumbers(int num1, int num2){
-  return num1 + num2
+int addNumbers(int num1, int num2) {
+    return num1 + num2;
 }
 ``` 
-"addNumbers" is the **method name**, `num1` and `num2` are the** method parameters**, and `int` is the **return type**, indicating a whole-number value must be returned. If no value needs to be returned, the `void` keyword is used. The standard naming convention for **methods** is to make the name an action and to use camelCase notation
+"addNumbers" is the **method name**, `num1` and `num2` are the **method parameters**, and `int` is the **return type**, indicating a whole-number value must be returned. If no value needs to be returned, the `void` keyword is used. The standard naming convention for **methods** is to make the name an action and to use camelCase notation
+
+### Varargs (Variable Arguments)
+Java allows you to pass a variable number of arguments to a method using varargs. This is useful when you don't know how many arguments will be passed to the method. Varargs are specified by three dots (`...`) after the data type. Inside the method, a varargs parameter is treated as an array
+```java
+int sumNumbers(int... numbers) {
+    int sum = 0;
+    for (int num : numbers) {
+        sum += num;
+    }
+    return sum;
+}
+```
+In this method, `sumNumbers` can accept any number of `int` arguments. The `numbers` parameter is treated as an array within the method
 
 ### Method Invocation
 The following class has a method that will return the sum of two integers:
