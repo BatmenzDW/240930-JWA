@@ -35,6 +35,20 @@ public class Person {
         System.out.println("Nice to meet you! My name is " + name + " and I am " + age + ".");
     }
 
+    /*
+        Anytime you know a method can take in one or more arguments, but you are not sure how many will
+        be provided at run time, you can use a vararg. This is a syntax that tells Java one or more arguments
+        are going to be provided to the method, but we don't know how many
+
+        Anytime you use varargs it must be the last parameter defined in the method signature
+    */
+
+   void countNumbers(int... numbers){
+        for(int number : numbers){
+            System.out.println(number);
+        }
+   }
+
 
     public static void main(String[] args) {
         // arguments need to be provided in the order the parameters are defined
@@ -49,6 +63,8 @@ public class Person {
          */
         personTwo.greeting();
         personOne.respondToGreeting();
+
+        personOne.countNumbers(1,2,3,4,5,6,7);
 
     }
 

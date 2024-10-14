@@ -1,3 +1,8 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 public class CaseConverter {
 
     /*
@@ -24,13 +29,18 @@ public class CaseConverter {
             case "camel":
                 switch(targetCase){
                     case "snake_case":
-                        return convertCamelCaseToSnakeCase(input);
+                        return convertCamelCaseToSnakeCaseUsingHelperMethods(input);
                 }
         }
         return "Conversion failed, please try again!";
     }
 
-    public String convertCamelCaseToSnakeCase(String input){
+    /*
+        This method would benefit from making use of the helper methods to facilitate the transformation
+        of the variable name: this would make the method easier to read, easier to understand, and
+        easier to refactor if/when needed
+     */
+    public String convertCamelCaseToSnakeCaseRobust(String input){
         // Anytime you need to manipulate String values StringBuilder should be used
         StringBuilder stringBuilder = new StringBuilder(input);
         // we can loop through the characters of the String in our String builder to look for uppercase characters
@@ -42,7 +52,7 @@ public class CaseConverter {
                  *  1. starting index for the replacement (should just be index)
                  *  2. ending point for the replacement (should be index + 1, since the one uppercase character is being replaced)
                  *  3. new String value to replace uppercase letter with (we can do the underscore and lowercase letter, Stringbuilder 
-                 *     will handle adjusting the String to accomodate)
+                 *     will handle adjusting the String to accommodate)
                  */
                 int replaceStartIndex = index;
                 int replaceEndIndex = index + 1;
@@ -54,6 +64,36 @@ public class CaseConverter {
         }
         // don't forget to return the String!
         return stringBuilder.toString();
+    }
+
+    public String convertCamelCaseToSnakeCaseUsingHelperMethods(String input){
+        StringBuilder sb = new StringBuilder(input);
+        addUnderscores(sb);
+        return sb.toString().toLowerCase();
+
+    }
+
+    public int[] removeUnderscores(StringBuilder variable){
+        //TODO
+        return null;
+    }
+
+    public List<Integer> addUnderscores(StringBuilder variable){
+        List<Integer> indexes = new ArrayList<>();
+        for(int index = 0; index < variable.length(); index++){
+            if(Character.isUpperCase(variable.charAt(index))){
+                variable.insert(index,"_");
+                indexes.add(index);
+                // since we are adding the underscore before the uppercase letter, the next character will be the uppercase letter
+                // so we need to increase the value of index manually to avoid an infinite loop
+                index++;
+            }
+        }
+        return indexes;
+    }
+
+    public String uppercaseFirstLetterInWord(StringBuilder variable, boolean convertingToCamel, int[] indexes){
+        return null;
     }
 
 }

@@ -788,3 +788,58 @@ public static void main(String[] args) {
 	persons.add(new Person(111));
 }
 ```
+
+## Maven
+
+### Introduction to Maven
+**Maven** is a powerful Java **build tool** designed to streamline the management of Java projects. It simplifies the process of adding **third-party libraries** to your application by handling dependencies automatically, ensuring that all necessary libraries are included and up-to-date. Additionally, **Maven** facilitates the **packaging** of your application for distribution, creating standardized formats such as **JAR** or **WAR** files. **Maven** also supports the **automation of software tests**, enabling developers to run their tests seamlessly as part of the build process. There are eight different phases to the **Maven Lifecycle**, some of which require third party tools in order to function properly:
+1. **Validate**: confirm project configurations are correct and all necessary information is available
+2. **Compile**: compiles project source code
+3. **Test**: tests all compiled code
+4. **Package**: packages all compiled code to WAR/JAR file
+5. **Integration**: performs all integration tests on WAR/JAR
+6. **Verify**: runs checks on the results of integration tests
+7. **Install**: installs WAR/JAR to local repository
+8. **Deploy**: copies final WAR/JAR to the remote repository
+
+### Maven Central Repository
+Maven can download dependencies required for your application from a central repository in the web. When it does this it creates a local repository downloaded libraries and frameworks for your Java application are stored. These are managed by your project POM.xml, if you create a maven project. There is a local maven repository ($HOME/.m2/repository) maven will check first, then it will check the online repository for artifacts
+
+### Project Object Model
+The **Project Object Model** (.xml) is how Maven knows how to build your project. It includes your dependencies, plugins, build information, and other resources needed to package and manage your application
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!--the project tag is the root tag-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!--determines what pom version to use-->
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>examplework</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <!--project specific settings-->
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
+    <!--This is where you put your various dependencies. They include groupID, artifactId, and version-->
+    <dependencies>
+        <!--each dependency goes inside its own tags-->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+    </dependencies>
+
+</project>
+```
+
+#### Project Coordinates
+These are various identifiers for your Maven project:
+- **group-id**: The group, company, team, organization, project, or other group. for example: "com.revature"
+- **artifact-id**: A unique identifier under groupId that represents a single project. for example: "myproject"
+- **version**: A specific release of a project. Projects in development usually include "SNAPSHOT"
+- **packaging**: The type of project, defaulting to jar, describing the packaged output produced by a project
