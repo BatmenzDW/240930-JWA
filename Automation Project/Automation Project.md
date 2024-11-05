@@ -1,18 +1,20 @@
-# JWA Foundation Project
-The Planetarium is a web application designed by Revature Space Initiative for astronomers to track celestial bodies they discover in the night sky. Development work on the application is progressing, and the company wants to bring in testers to implement Quality Control to further improve product quality. Your job this Sprint is to perform manual testing on the application  with two main goals: to look for defects in the product, and to give feedback on the user experience working with the app
+# JWA Automation Project
+The Planetarium is a web application designed by Revature Space Initiative for astronomers to track celestial bodies they discover in the night sky. Development work on the application is progressing, and the company wants to bring in testers to improve Quality Control to further improve product quality. The company was satisfied with the manual testing done last Sprint, and they would like for you and your team to build automated versions of your previous manual tests in order to streamline the testing process. Your Job this Sprint is to build an automated test suite to perform System testing on the planetarium application
 
 ## Project Technology Focus
+- Java
+- Selenium
+- Cucumber
+- Junit
 - Jira
-- Manual Testing
 - Test Case Creation
 - Test Reporting
 - System Testing
-- Acceptance Testing
 
 ## Project Test Objectives
 - defect discovery
 - requirements validation
-- usability reporting
+- useability reporting
 
 ## Use Cases
 - Users should be able to open a new User account with the Planetarium
@@ -51,6 +53,11 @@ The Planetarium is a web application designed by Revature Space Initiative for a
     - Does the service inspire confidence?
     - Is the service pleasing to look at?
 
+## Test Software Requirements
+- web page information should be saved in Page Object Models for ease of refactoring and updating
+- feature files should be used to link Gherkin Acceptance Criteria to code execution in order to perform End to End testing
+- A test runner class should be used to facilitate the End to End testing
+
 ## Defect Report Requirements
 - All Defect Reports should include the following information
     - unique id
@@ -59,9 +66,11 @@ The Planetarium is a web application designed by Revature Space Initiative for a
     - associated Test Data
 
 ## MVP Goals
-- Test Cases are created for Use Cases
+- All previous manual tests for System testing are automated
+- Requirement Traceability Matrix contains Cucumber Acceptance Criteria
+- Cucumber Acceptance Criteria are created for Use Cases
 - Test Cases are saved in Jira
-- Manual Tests are complete
+- Automated Tests are complete
 - Test Results are saved in Jira
 - Defect Reports are created for each failed test
 - Defect Reports are saved in Jira
@@ -69,52 +78,58 @@ The Planetarium is a web application designed by Revature Space Initiative for a
 ## Suggested Stretch Goals
 - perform extra Error Guess Testing
 - perform Non-Functional System testing
+- perform extra Acceptance Testing
 
-## Order of Operations
+## Order of Operations: Second Sprint
 
 ### 1. Requirement Analysis
 **Entry Criteria:**
-- Requirements document is available.
-- Stakeholder is available for clarification.
+- Requirements document is available
+- Stakeholder is available for clarification
+- Test Results from the first sprint are available
 
 **Exit Criteria:**
 - Requirements are understood
-- Acceptance Criteria created
-- Initial RTM created
+- Acceptance Criteria updated
+- RTM updated with new requirements
+- Test Results are aggregated
+- Defect Reports are aggregated
 
 ### 2. Test Planning
 **Entry Criteria:**
-- RTM created
+- Updated RTM is available
+- Results from the first sprint analyzed
 
 **Exit Criteria:**
-- Test plan documentation is created
+- Test plan documentation is updated
+- Automation strategy is defined
 
 ### 3. Test Case Development
 **Entry Criteria:**
-- Test plan is up to date
-- RTM up to date
+- Updated test plan is available
+- RTM is up to date
 
 **Exit Criteria:**
-- Test cases are written and reviewed
+- Automated test cases are written and reviewed
 - Test data is prepared
 
 ### 4. Test Environment Setup
 **Entry Criteria:**
-- Test cases are written
+- Automated test cases are written
 - Test data is defined
-- setup resources are available
+- Setup resources are available
 
 **Exit Criteria:**
 - Test environment is configured
-- Smoke tests all pass
+- Automated smoke tests all pass
 
 ### 5. Test Execution
 **Entry Criteria:**
-- Test cases are developed and reviewed
-- Test environment passes smoke tests
+- Automated test cases are developed and reviewed
+- Test environment passes automated smoke tests
 
 **Exit Criteria:**
-- Test cases are executed
+- Automated test cases are executed
 - Defects are logged in Jira
 - Test results are documented in Jira
 
@@ -124,8 +139,9 @@ The Planetarium is a web application designed by Revature Space Initiative for a
 - All defects are logged and tracked
 
 **Exit Criteria:**
-- Test summary report is created
+- Test summary report is updated
 - Presentation for Stakeholder has been prepped
+- Documentation is updated with new estimates and findings
 
 ## Setup Requirements
 - an environment variable called "PLANETARIUM" needs to be set with the JDBC url for the planetarium database
@@ -133,45 +149,26 @@ The Planetarium is a web application designed by Revature Space Initiative for a
 - a database needs to be created and set up for the planetarium to work properly. Use the ```setup-reset.sql``` file to create the database at the same location as your "PLANETARIUM" environment variable
 -  start the application with the command ```java -jar path/to/Planetarium-1.0-shaded.jar```
 
+## Agile Practices
+- **Daily Scrum**:
+  - Update on previous day's work
+  - Plan for today's work
+  - Discuss blockers
+  - Save notes in Jira/Confluence/GitHub for tracking
+  - Keep the meeting simple and focused
+- **Sprint Board**:
+  - Assign and update issue statuses to avoid duplicate work
+- **Pair Programming**:
+  - Roles: Driver (writes code) and Navigator (reviews code)
 
-## Presentation Requirements
-- shoot for a 5 minute presentation
-- have your test reports ready to go
-- share a github repo link with your trainer before you start your presentation
-- A couple recommendations
-    - write down what you want to say
-    - organize your desktop/browser so all the content you need is prepared when you start your presentation
+## Git Practices
+- **Protect Main Branch**:
+  - Prevent direct pushes to avoid breaking changes
+- **Enforce Code Reviews**
+  - require 1 or 2 reviewers for all pull requests in Github
+- **Branching Strategy**:
+  - Standard naming convention for clarity
+  - Define frequency for adds and commits
+  - Agree on commit message style (active/passive voice, commit type, associated issue id, etc.)
 
-## Presentation Order of Operations
-1. Present Test Summary Report
-    - give a brief overview of the scope of your testing
-    - describe 1-3 meaningful discoveries made by your testing
-        - high severity defects
-        - interesting edge cases
-2. Showcase Acceptance Testing Summary Report
-    - give a brief overview of your acceptance testing
-    - describe 1-3 meaningful discoveries made by your testing
-        - all use cases inspired confidence
-        - no use cases inspired confidence
-        - majority of use cases were pleasing to look at
-        - etc.
-3. Perform mini Sprint retrospective
-    - what went well in the Sprint?
-        - you had a good understanding of the work
-        - you were quick to implement your test strategy to streamline work
-        - you came up with a way to automate much of the setup/tear down for resetting your test environment between tests
-        - etc.
-    - what can be improved for next Sprint?
-        - did you underestimate how long a phase would take to complete?
-        - did you do a poor job of implementing your chosen testing techniques?
-        - did you fall behind your schedule and have to rush to finish your work?
-        - etc.
-    - what work needs to be done next Sprint?
-        - do you have more tests to execute?
-        - are there edge cases you discovered that you want to test?
-        - are there new testing strategies you can implement next sprint?
-        - do you need to update your Story Points / Velocity estimates?
-        - etc.
-4. Field questions
 
-**NOTE**: please save your talking points for your Sprint Retrospective and save them along with your other test documentation in your project github repo

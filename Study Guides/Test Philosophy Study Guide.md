@@ -42,10 +42,11 @@ For example, imagine you are on a team that has been tasked with building and te
     - the sooner testing is started the earlier defects will be caught
         - static testing should start as soon as possible
         - dynamic testing should be started when feasible
+    - defects discovered early in the development cycle tend to be easier and quicker to fix, and less costly than those discovered later in development
 - **Defects Cluster**
     - any feature/requirement with one or more defects warrants extra testing
     - defects tend to cascade, especially if the defect is at the start of any data transformation or if other features require the data involved in the defect
-- **Tests Wear Out**
+- **Tests Wear Out (pesticide paradox)**
     - your tests will eventually exhaust all defects they can find: when this happens it is worth considering additional tests to accommodate the addition of new features or requirements
     - don't remove old tests when they stop discovering defects: you can still use them for regression testing
 - **Testing is Contextual**

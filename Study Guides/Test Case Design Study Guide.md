@@ -1,5 +1,30 @@
 # Test Case Design Study Guide
 
+## Testing Pyramid
+When designing tests, it is useful to keep the "Testing Pyramid" in mind. This "Test Pyramid" is a visual representation of the abundance of tests based on certain "levels" of testing. More tests exist at the lower level of the pyramid than at the top because they exist at a lower level of abstraction (unit tests), whereas fewer exist at the top and focus on a higher layer of abstraction (system tests, UI tests, UAT).
+
+- Unit Testing
+  - Most micro-level of testing
+  - Test each component without dependencies
+  - Usually requires data mocking
+  - Unit testing tools include Junit and TestNg
+- Integration Testing
+  - Test components with dependencies
+  - Check that components work with one another correctly
+  - Logically related modules are tested as a group
+  - Integration testing tools include those used for Unit testing, along with third party tools like Postman or Thunderclient
+- System Testing
+  - Test the entire application as a whole
+  - Ensure the entire application works without errors
+  - System Testing tools include those used for Integration and Unit testing, alongside others like Selenium and Cucumber
+- Acceptance Testing 
+  - Test individual or whole aspects of an application to determine whether they are "acceptable" or not
+  - Often involves making subjective measurements and assessments, such as determining how intuitive the application is to use
+  - Can include tests used to validate user, stakeholder, or regulatory requirements are being met by the application
+  - Often requires manual testing, particularly for any subjective tests, but automation tools can be used for some forms of Acceptance testing
+
+![Testing Pyramid](testing-pyramid.png)
+
 ## Terminology
 
 ### Test Case
@@ -66,7 +91,7 @@ Note that the terms **defect** and "bug" can be used interchangeably, but **defe
 In software work, any mistake a developer adds to code, whether calling the wrong variable, forgetting to implement a business rule, or any other mistake, is called an **error**. It is **errors** that lead to defects being present in code
 
 ### Failure
-Any defects that make it past testing and are later discovered by end users during the execution of the application are called **failures**. Note that defects and **falures** represent the same thing, a deviation from the expected or required, but they differ in when they happen. Defects are discovered during testing; **failures** are discovered in production. This distinction is a useful way to quickly identify when the bug occured and give some initial guidance on how to approach debugging
+Any defects that make it past testing and are later discovered by end users during the execution of the application are called **failures**. Note that defects and **failures** represent the same thing, a deviation from the expected or required, but they differ in when they happen. Defects are discovered during testing; **failures** are discovered in production. This distinction is a useful way to quickly identify when the bug occurred and give some initial guidance on how to approach debugging
 
 ## Technique
 
@@ -85,7 +110,7 @@ Some features of **use case** testing:
 **White box** testing has the tester use the internal structure of the application being tested to create tests: the source code, internal configurations, application environment, and any other internally used resources are available to the tester. All levels of testing can be done in **white box** testing
 
 ### Black Box: State Transition Diagram
-Anytime you have a system or service where there are multiple "states" to consider, a **state transition diagram** can be used to organize your data before creating your test cases. A **state transition diagram** is simply a flow chart that shows the various states in the service and the way they connect to each other. For instance, if you are testing a reimbursement system you may have the following states of a reimbursement request: "pending", "accepted", "rejected". Each state of the request would have different actions, expectations, and other general requirements associated with it, and if you have your states organized in a **state transition diagram** it will be easier to organize the tests you create and prevent redundant overlap
+Anytime you have a system or service where there are multiple "states" to consider, a **state transition diagram** can be used to organize your data before creating your test cases. A **state transition diagram** is simply a flow chart that shows the various states in the service and the way they connect to each other. For instance, if you are testing a reimbursement system you may have the following states of a reimbursement request: "pending", "accepted", "rejected". Each state of the request would have different actions, expectations, and other general requirements associated with it, and if you have your states organized in a **state transition diagram** it will be easier to organize the tests you create and prevent redundant overlap. For a **state transition diagram** to be complete it should include an **initial state** and **end state** at minimum
 
 ### Black Box: Decision Table
 When a user must make a string of "decisions" using a service, such as providing multiple inputs to a form, a **decision table** can be used to organize the inputs and expected results of providing the data. For instance, if testing a login feature, you could craft a decision table where all combinations of "valid" usernames and passwords are matched with "invalid" usernames and passwords, and for each possible combo list the expected results (logged in or rejected). By organizing the data combinations in a **decision table** you can accommodate the potential combinations of inputs and test the inputs produce the expected results
@@ -103,7 +128,7 @@ Similar to boundary value analysis, **equivalence partitioning** is a technique 
 **Exploratory Testing** is a software testing technique where testers actively engage with the application to discover its functionalities and potential issues. Unlike traditional testing methods that rely on predefined test cases, exploratory testing relies on the tester’s creativity, intuition, and experience. Testers explore the software without a specific plan, learning about its behavior and identifying defects in real-time. This method is particularly useful when requirements are unclear or incomplete, as it allows testers to adapt and respond to the software’s actual performance. Exploratory testing encourages testers to think critically and investigate the application from various angles
 
 ### White Box: Statement Testing
-**Statement testing** is the practice of writting tests to execute statements in source code. This type of testing can be used to detect defects caused by developer error. It can also be used to help identify parts of the code that are not being reached, which might indicate dead code or logic errors. Statement testing is often used in combination with other testing techniques to narrow down the location where errors and/or defects are being triggered. **Statement testing** is often measured by code coverage: the number of lines of code involved in a test case. An application with 80% code coverage executes 80% of the lines of code during testing. Note that it is not always necessary to achieve 100% code coverage: you may use other testing techniques or tools to test parts of your code that are not part of your code coverage report
+**Statement testing** is the practice of writing tests to execute statements in source code. This type of testing can be used to detect defects caused by developer error. It can also be used to help identify parts of the code that are not being reached, which might indicate dead code or logic errors. Statement testing is often used in combination with other testing techniques to narrow down the location where errors and/or defects are being triggered. **Statement testing** is often measured by code coverage: the number of lines of code involved in a test case. An application with 80% code coverage executes 80% of the lines of code during testing. Note that it is not always necessary to achieve 100% code coverage: you may use other testing techniques or tools to test parts of your code that are not part of your code coverage report
 
 ### Checklist Testing
 **Checklist testing** involves following a pre-determined list of actions to perform your testing. This method is akin to checking items off a grocery or chore list, ensuring that each step is completed and accounted for. The checklist typically includes specific tasks or conditions that need to be met, such as verifying login functionality, checking data input fields, or ensuring that navigation links work correctly. By systematically going through the checklist, testers can ensure that all critical aspects of the software are examined. This approach helps in maintaining consistency and thoroughness in testing, as it provides a clear and structured way to track what has been tested and what still needs attention. Additionally, checklist testing can be particularly useful in regression testing, where previously tested functionalities are re-verified to ensure that new changes have not introduced any new defects
